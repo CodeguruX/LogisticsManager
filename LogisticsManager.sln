@@ -5,6 +5,11 @@ VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogisticsManager", "LogisticsManager\LogisticsManager.csproj", "{0D73D049-FB39-49EF-8658-E740B378A39E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3AE9DB55-F153-4F78-9056-40492E75E816}"
+	ProjectSection(SolutionItems) = preProject
+		Inventory.cs = Inventory.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

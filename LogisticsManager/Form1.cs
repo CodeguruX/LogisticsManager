@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace LogisticsManager
 {
-    public partial class Form1 : Form
+    public partial class form_LogisticsManagerMain : Form
     {
-        public Form1()
+        public form_LogisticsManagerMain()
         {
             InitializeComponent();
         }
