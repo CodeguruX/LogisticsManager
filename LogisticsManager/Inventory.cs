@@ -20,29 +20,29 @@ using System.Windows.Forms;
 */
 
 
-public class Inventory<T, D, P>
+namespace LogisticsManager
 {
-    private T firstValue;
-    private D secondValue;
-    private P thirdValue;
-
-    public Inventory()
+    public class Inventory<T, D, P>
     {
-    }
+        private T firstValue;
+        private D secondValue;
+        private P thirdValue;
 
-    public Inventory(T first, D second, P third)
-    {
-        firstValue = first;
-        secondValue = second;
-        thirdValue = third;
-    }
+        public Inventory()
+        {
+        }
 
-    public T FirstProperty { get; set; }
-    public D SecondProperty { get; set; }
-    public P ThirdProperty { get; set; }
+        public Inventory(T first, D second, P third)
+        {
+            firstValue = first;
+            secondValue = second;
+            thirdValue = third;
+        }
 
-    public override string ToString()
-    {
-        return this.ToString();
+        public T FirstProperty { get; set; }
+        public D SecondProperty { get; set; }
+        public P ThirdProperty { get; set; }
+
+        
     }
 }

@@ -33,8 +33,8 @@ using System.Windows.Forms;
     in a more agile fashion. The program functions as it is, the customer can
     gain business value from it, and any upgrades they want can be delivered in
     a manner where it is already compatable with their current software and they
-    can better choose in what direction the program should function based on
-    fully functional and integrated code modules.
+    can better choose in what direction the program should function based on newly
+    added, fully functional, and integrated code modules.
 */
 
 namespace LogisticsManager
