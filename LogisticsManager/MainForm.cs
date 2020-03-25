@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LogisticsManager
@@ -182,6 +176,27 @@ namespace LogisticsManager
             textBox_InventoryNewName.Text = "";
             textBox_InventoryNewID.Text = "";
             textBox_InventoryNewQuantity.Text = "1";
+        }
+
+        private void label_TrucksVinNumber_Click(object sender, EventArgs e)
+        {
+            // Code for generating random VIN numbers will be added at a later date.
+        }
+
+        private void checkedListBox_TrucksCurrentInventory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_TruckSaveInfo_Click(object sender, EventArgs e)
+        {
+            foreach (var item in checkedListBox_CurrentInventory.Items.OfType<Inventory<string, string, int>>().ToList())
+            {
+                listBox_TrucksInventoryInStock.Items.Add(item.FirstProperty);
+                
+            }
+
+            //checkedListBox_CurrentInventory.Items = checkedListBox_TrucksInventoryInStock.ob
         }
     }
 }
