@@ -30,6 +30,9 @@ namespace LogisticsManager
 
                 checkedListBox_CurrentInventory.Items.Add(inventoryItem, false);
                 checkedListBox_CurrentInventory.DisplayMember = "FirstProperty";
+
+                checkedListBox_TrucksInventoryInStock.Items.Add(inventoryItem, false);
+                checkedListBox_TrucksInventoryInStock.DisplayMember = "FirstProperty";
             }
             catch (Exception)
             {
@@ -60,6 +63,7 @@ namespace LogisticsManager
             foreach (var item in checkedListBox_CurrentInventory.CheckedItems.OfType<Inventory<string, string, int>>().ToList())
             {
                 checkedListBox_CurrentInventory.Items.Remove(item);
+                checkedListBox_TrucksInventoryInStock.Items.Remove(item);
             }
         }
 
@@ -185,18 +189,48 @@ namespace LogisticsManager
 
         private void checkedListBox_TrucksCurrentInventory_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            // Code for generating an item value preview on selection but before being checked will be added at a later date.
         }
 
         private void button_TruckSaveInfo_Click(object sender, EventArgs e)
         {
             foreach (var item in checkedListBox_CurrentInventory.Items.OfType<Inventory<string, string, int>>().ToList())
             {
-                listBox_TrucksInventoryInStock.Items.Add(item.FirstProperty);
-                
+                checkedListBox_TrucksInventoryInStock.Items.Add(item, false);
+                checkedListBox_TrucksInventoryInStock.DisplayMember = "FirstProperty";
             }
 
             //checkedListBox_CurrentInventory.Items = checkedListBox_TrucksInventoryInStock.ob
+        }
+
+        private void button_TrucksMoveInventoryToTruck_Click(object sender, EventArgs e)
+        {
+            foreach (var item in checkedListBox_TrucksInventoryInStock.CheckedItems.OfType<Inventory<string, string, int>>().ToList())
+            {
+                checkedListBox_TrucksCurrentInventory.Items.Add(item, false);
+                checkedListBox_TrucksCurrentInventory.DisplayMember = "FirstProperty";
+
+                // Update the removal of the Inventory object from current stock on Inventory and Trucks tab
+
+                checkedListBox_CurrentInventory.Items.Remove(item);
+                checkedListBox_TrucksInventoryInStock.Items.Remove(item);
+            }
+        }
+
+        private void button_TrucksMoveInventortyToStock_Click(object sender, EventArgs e)
+        {
+            foreach (var item in checkedListBox_TrucksCurrentInventory.CheckedItems.OfType<Inventory<string, string, int>>().ToList())
+            {
+                checkedListBox_CurrentInventory.Items.Add(item, false);
+                checkedListBox_CurrentInventory.DisplayMember = "FirstProperty";
+
+                checkedListBox_TrucksInventoryInStock.Items.Add(item, false);
+                checkedListBox_TrucksInventoryInStock.DisplayMember = "FirstProperty";
+                // Update the removal of the Inventory object from current stock on Inventory and Trucks tab
+
+
+                checkedListBox_TrucksCurrentInventory.Items.Remove(item);
+            }
         }
     }
 }

@@ -425,6 +425,12 @@
             "Toys R Gone",
             "Ham\'s Club"});
             this.comboBox_TruckCustomerName.FormattingEnabled = true;
+            this.comboBox_TruckCustomerName.Items.AddRange(new object[] {
+            "Gal\'s Grapes",
+            "Rusty\'s Pizza Delivery",
+            "StopGame",
+            "Ham\'s Club",
+            "Tom\'s Software"});
             this.comboBox_TruckCustomerName.Location = new System.Drawing.Point(165, 108);
             this.comboBox_TruckCustomerName.Name = "comboBox_TruckCustomerName";
             this.comboBox_TruckCustomerName.Size = new System.Drawing.Size(124, 21);
@@ -485,6 +491,7 @@
             this.button_TrucksMoveInventoryToTruck.TabIndex = 12;
             this.button_TrucksMoveInventoryToTruck.Text = "Truck >>";
             this.button_TrucksMoveInventoryToTruck.UseVisualStyleBackColor = true;
+            this.button_TrucksMoveInventoryToTruck.Click += new System.EventHandler(this.button_TrucksMoveInventoryToTruck_Click);
             // 
             // button_TrucksMoveInventortyToStock
             // 
@@ -494,6 +501,7 @@
             this.button_TrucksMoveInventortyToStock.TabIndex = 13;
             this.button_TrucksMoveInventortyToStock.Text = "<< Stock";
             this.button_TrucksMoveInventortyToStock.UseVisualStyleBackColor = true;
+            this.button_TrucksMoveInventortyToStock.Click += new System.EventHandler(this.button_TrucksMoveInventortyToStock_Click);
             // 
             // label_TrucksList
             // 
