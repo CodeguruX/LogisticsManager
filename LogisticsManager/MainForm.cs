@@ -22,8 +22,7 @@ namespace LogisticsManager
         {
             try
             {
-
-                Inventory<string, string, int> inventoryItem = new Inventory<string, string, int>()
+                Inventory <string, string, int> inventoryItem = new Inventory<string, string, int>()
                 {
                     FirstProperty = textBox_InventoryName.Text,
                     SecondProperty = textBox_InventoryId.Text,
@@ -45,7 +44,7 @@ namespace LogisticsManager
             {
                 MessageBox.Show("Must Enter Inventory Name, ID, and Quantity", "Insufficient Data");
             }
-            
+
         }
 
         private void textBox_InventoryQuantity_KeyPress(object sender, KeyPressEventArgs e)
@@ -67,7 +66,7 @@ namespace LogisticsManager
 
         private void button_DeleteChecked_Click(object sender, EventArgs e)
         {
-            foreach (var item in checkedListBox_CurrentInventory.CheckedItems.OfType<Inventory<string, string, int>>().ToList())
+            foreach (var item in checkedListBox_CurrentInventory.CheckedItems.OfType<Inventory <string, string, int>>().ToList())
             {
                 checkedListBox_CurrentInventory.Items.Remove(item);
                 checkedListBox_TruckInventoryInStock.Items.Remove(item);
@@ -77,38 +76,17 @@ namespace LogisticsManager
         private void checkedListBox_CurrentInventory_SelectedIndexChanged(object sender, EventArgs e)
         {
             Inventory<string, string, int> selectedInventory;
-            
-            
-            selectedInventory = (Inventory<string, string, int>)checkedListBox_CurrentInventory.SelectedItem;
+
+            selectedInventory = (Inventory <string, string, int>)checkedListBox_CurrentInventory.SelectedItem;
 
             if (selectedInventory != null)
             {
-                try
-                {
-                    this.textBox_InventoryCurrentNameOfSelectedItem.Text = selectedInventory.FirstProperty;
-                }
-                catch (Exception)
-                {
 
-                }
+                this.textBox_InventoryCurrentNameOfSelectedItem.Text = selectedInventory.FirstProperty;
+                this.textBox_InventoryCurrentIdOfSelectedItem.Text = selectedInventory.SecondProperty;
+                this.textBox_InventoryCurrentQuantityOfSelectedItem.Text = selectedInventory.ThirdProperty.ToString();
 
-                try
-                {
-                    this.textBox_InventoryCurrentIdOfSelectedItem.Text = selectedInventory.SecondProperty;
-                }
-                catch (Exception)
-                {
 
-                }
-
-                try
-                {
-                    this.textBox_InventoryCurrentQuantityOfSelectedItem.Text = selectedInventory.ThirdProperty.ToString();
-                }
-                catch (Exception)
-                {
-
-                }
             }
         }
 
@@ -126,12 +104,11 @@ namespace LogisticsManager
         private void button_InventorySaveChangesToSelectedItem_Click(object sender, EventArgs e)
         {
             int i = 0;
-            Inventory<string, string, int> selectedInventory = new Inventory<string, string, int>();
+            Inventory <string, string, int> selectedInventory = new Inventory <string, string, int>();
 
             try
-            { 
-
-                if ( textBox_InventoryNewName.Text == ""  || textBox_InventoryNewID.Text == "" || textBox_InventoryNewQuantity.Text == "")
+            {
+                if (textBox_InventoryNewName.Text == "" || textBox_InventoryNewID.Text == "" || textBox_InventoryNewQuantity.Text == "")
                 {
                     throw new System.Exception();
                 }
@@ -142,44 +119,19 @@ namespace LogisticsManager
 
                 i = this.checkedListBox_CurrentInventory.SelectedIndex;
                 this.checkedListBox_CurrentInventory.Items[i] = selectedInventory;
+                this.checkedListBox_TruckInventoryInStock.Items[i] = selectedInventory;
 
                 if (selectedInventory != null)
                 {
-                    try
-                    {
-                        textBox_InventoryCurrentNameOfSelectedItem.Text = selectedInventory.FirstProperty;
-                    }
-                    catch (Exception)
-                    {
-
-                    }
-
-                    try
-                    {
-                        textBox_InventoryCurrentIdOfSelectedItem.Text = selectedInventory.SecondProperty;
-                    }
-                    catch (Exception)
-                    {
-
-                    }
-
-                    try
-                    {
-                        textBox_InventoryCurrentQuantityOfSelectedItem.Text = selectedInventory.ThirdProperty.ToString();
-                    }
-                    catch (Exception)
-                    {
-
-                    }
+                    textBox_InventoryCurrentNameOfSelectedItem.Text = selectedInventory.FirstProperty;
+                    textBox_InventoryCurrentIdOfSelectedItem.Text = selectedInventory.SecondProperty;
+                    textBox_InventoryCurrentQuantityOfSelectedItem.Text = selectedInventory.ThirdProperty.ToString();
                 }
-
             }
             catch (Exception)
             {
                 MessageBox.Show("Must select a new Name, ID, and Quantity for the selected inventory item.", "Missing information");
             }
-
-            
         }
 
         private void button_ClearAllNewValues_Click(object sender, EventArgs e)
@@ -187,11 +139,11 @@ namespace LogisticsManager
             textBox_InventoryNewName.Text = "";
             textBox_InventoryNewID.Text = "";
             textBox_InventoryNewQuantity.Text = "1";
-        }       
+        }
 
         private void button_TruckSaveInfo_Click(object sender, EventArgs e)
         {
-            Truck<string, string, string> truckInfo = new Truck<string, string, string>("","","");
+            Truck<string, string, string> truckInfo = new Truck<string, string, string>("", "", "");
 
             try
             {
@@ -203,12 +155,15 @@ namespace LogisticsManager
                 truckInfo.FirstProperty = textBox_TruckLicensePlate.Text;
                 truckInfo.SecondProperty = textBox_TruckVinNumber.Text;
                 truckInfo.ThirdProperty = textBox_TruckMakeAndModel.Text;
+
+                checkedListBox_TruckList.Items.Add(truckInfo);
+                checkedListBox_TruckList.DisplayMember = "FirstProperty";
             }
-            catch(Exception)
+            catch (Exception)
             {
                 MessageBox.Show("Must provide a License Plate, VIN Number, and the Make/Model to register a new Truck.", "Missing Truck Info");
             }
-            
+
         }
 
         private void button_TrucksMoveInventoryToTruck_Click(object sender, EventArgs e)
@@ -223,6 +178,9 @@ namespace LogisticsManager
                 checkedListBox_TruckCurrentInventory.Items.Add(item, false);
                 checkedListBox_TruckCurrentInventory.DisplayMember = "FirstProperty";
 
+                checkedListBox_WarehouseTruckManifest.Items.Add(item, false);
+                checkedListBox_WarehouseTruckManifest.DisplayMember = "FirstProperty";
+
                 // Update the removal of the Inventory object from current stock on Inventory and Trucks tab
 
                 checkedListBox_CurrentInventory.Items.Remove(item);
@@ -231,7 +189,7 @@ namespace LogisticsManager
 
         }
 
-        private void button_TrucksMoveInventortyToStock_Click(object sender, EventArgs e)
+        private void button_TruckMoveInventortyToStock_Click(object sender, EventArgs e)
         {
             foreach (var item in checkedListBox_TruckCurrentInventory.CheckedItems.OfType<Inventory<string, string, int>>().ToList())
             {
@@ -240,10 +198,31 @@ namespace LogisticsManager
 
                 checkedListBox_TruckInventoryInStock.Items.Add(item, false);
                 checkedListBox_TruckInventoryInStock.DisplayMember = "FirstProperty";
+
                 // Update the removal of the Inventory object from current stock on Inventory and Trucks tab
 
-
                 checkedListBox_TruckCurrentInventory.Items.Remove(item);
+                checkedListBox_WarehouseTruckManifest.Items.Remove(item);
+            }
+        }
+
+        private void button_TruckRemoveChecked_Click(object sender, EventArgs e)
+        {
+            foreach (var item in checkedListBox_TruckList.CheckedItems.OfType<Truck<string, string, string>>().ToList())
+            {
+                checkedListBox_TruckList.Items.Remove(item);
+            }
+        }
+
+        private void button_WarehouseMakeDelivery_Click(object sender, EventArgs e)
+        {
+            foreach (var item in checkedListBox_WarehouseTruckManifest.CheckedItems.OfType<Inventory<string, string, int>>().ToList())
+            {
+                checkedListBox_TruckCurrentInventory.Items.Remove(item);
+                checkedListBox_WarehouseTruckManifest.Items.Remove(item);
+
+                checkedListBox_WarehouseManifest.Items.Add(item);
+                checkedListBox_WarehouseManifest.DisplayMember = "FirstProperty";
             }
         }
     }

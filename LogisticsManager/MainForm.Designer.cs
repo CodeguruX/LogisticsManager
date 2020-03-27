@@ -55,6 +55,7 @@
             this.button_SubmitInventory = new System.Windows.Forms.Button();
             this.textBox_InventoryName = new System.Windows.Forms.TextBox();
             this.tabPage_Truck = new System.Windows.Forms.TabPage();
+            this.button_TruckRemoveChecked = new System.Windows.Forms.Button();
             this.checkedListBox_TruckList = new System.Windows.Forms.CheckedListBox();
             this.textBox_TruckMakeAndModel = new System.Windows.Forms.TextBox();
             this.button_TruckSaveInfo = new System.Windows.Forms.Button();
@@ -71,10 +72,15 @@
             this.label_TruckVinNumber = new System.Windows.Forms.Label();
             this.label_TruckLicensePlateNumber = new System.Windows.Forms.Label();
             this.tabPage_MainWarehouse = new System.Windows.Forms.TabPage();
-            this.button_TruckRemoveSelected = new System.Windows.Forms.Button();
+            this.button_WarehouseMakeDelivery = new System.Windows.Forms.Button();
+            this.label_WarehouseTruckManifest = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.checkedListBox_WarehouseManifest = new System.Windows.Forms.CheckedListBox();
+            this.checkedListBox_WarehouseTruckManifest = new System.Windows.Forms.CheckedListBox();
             this.tabControl_LogisticsManagerMain.SuspendLayout();
             this.tabPage_Inventory.SuspendLayout();
             this.tabPage_Truck.SuspendLayout();
+            this.tabPage_MainWarehouse.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl_LogisticsManagerMain
@@ -338,7 +344,7 @@
             // 
             // tabPage_Truck
             // 
-            this.tabPage_Truck.Controls.Add(this.button_TruckRemoveSelected);
+            this.tabPage_Truck.Controls.Add(this.button_TruckRemoveChecked);
             this.tabPage_Truck.Controls.Add(this.checkedListBox_TruckList);
             this.tabPage_Truck.Controls.Add(this.textBox_TruckMakeAndModel);
             this.tabPage_Truck.Controls.Add(this.button_TruckSaveInfo);
@@ -362,6 +368,16 @@
             this.tabPage_Truck.Text = "Truck";
             this.tabPage_Truck.UseVisualStyleBackColor = true;
             // 
+            // button_TruckRemoveChecked
+            // 
+            this.button_TruckRemoveChecked.Location = new System.Drawing.Point(146, 152);
+            this.button_TruckRemoveChecked.Name = "button_TruckRemoveChecked";
+            this.button_TruckRemoveChecked.Size = new System.Drawing.Size(152, 23);
+            this.button_TruckRemoveChecked.TabIndex = 18;
+            this.button_TruckRemoveChecked.Text = "Delete Checked Trucks";
+            this.button_TruckRemoveChecked.UseVisualStyleBackColor = true;
+            this.button_TruckRemoveChecked.Click += new System.EventHandler(this.button_TruckRemoveChecked_Click);
+            // 
             // checkedListBox_TruckList
             // 
             this.checkedListBox_TruckList.FormattingEnabled = true;
@@ -372,16 +388,16 @@
             // 
             // textBox_TruckMakeAndModel
             // 
-            this.textBox_TruckMakeAndModel.Location = new System.Drawing.Point(165, 108);
+            this.textBox_TruckMakeAndModel.Location = new System.Drawing.Point(165, 109);
             this.textBox_TruckMakeAndModel.Name = "textBox_TruckMakeAndModel";
-            this.textBox_TruckMakeAndModel.Size = new System.Drawing.Size(124, 20);
+            this.textBox_TruckMakeAndModel.Size = new System.Drawing.Size(133, 20);
             this.textBox_TruckMakeAndModel.TabIndex = 16;
             // 
             // button_TruckSaveInfo
             // 
-            this.button_TruckSaveInfo.Location = new System.Drawing.Point(7, 152);
+            this.button_TruckSaveInfo.Location = new System.Drawing.Point(9, 152);
             this.button_TruckSaveInfo.Name = "button_TruckSaveInfo";
-            this.button_TruckSaveInfo.Size = new System.Drawing.Size(124, 23);
+            this.button_TruckSaveInfo.Size = new System.Drawing.Size(132, 23);
             this.button_TruckSaveInfo.TabIndex = 15;
             this.button_TruckSaveInfo.Text = "Save Information";
             this.button_TruckSaveInfo.UseVisualStyleBackColor = true;
@@ -395,7 +411,7 @@
             this.button_TruckMoveInventortyToStock.TabIndex = 13;
             this.button_TruckMoveInventortyToStock.Text = "<< Stock";
             this.button_TruckMoveInventortyToStock.UseVisualStyleBackColor = true;
-            this.button_TruckMoveInventortyToStock.Click += new System.EventHandler(this.button_TrucksMoveInventortyToStock_Click);
+            this.button_TruckMoveInventortyToStock.Click += new System.EventHandler(this.button_TruckMoveInventortyToStock_Click);
             // 
             // button_TruckMoveInventoryToTruck
             // 
@@ -457,14 +473,14 @@
             // 
             this.textBox_TruckVinNumber.Location = new System.Drawing.Point(165, 77);
             this.textBox_TruckVinNumber.Name = "textBox_TruckVinNumber";
-            this.textBox_TruckVinNumber.Size = new System.Drawing.Size(124, 20);
+            this.textBox_TruckVinNumber.Size = new System.Drawing.Size(133, 20);
             this.textBox_TruckVinNumber.TabIndex = 5;
             // 
             // textBox_TruckLicensePlate
             // 
             this.textBox_TruckLicensePlate.Location = new System.Drawing.Point(165, 46);
             this.textBox_TruckLicensePlate.Name = "textBox_TruckLicensePlate";
-            this.textBox_TruckLicensePlate.Size = new System.Drawing.Size(124, 20);
+            this.textBox_TruckLicensePlate.Size = new System.Drawing.Size(133, 20);
             this.textBox_TruckLicensePlate.TabIndex = 4;
             // 
             // label_TruckMakeAndModel
@@ -496,6 +512,11 @@
             // 
             // tabPage_MainWarehouse
             // 
+            this.tabPage_MainWarehouse.Controls.Add(this.button_WarehouseMakeDelivery);
+            this.tabPage_MainWarehouse.Controls.Add(this.label_WarehouseTruckManifest);
+            this.tabPage_MainWarehouse.Controls.Add(this.label1);
+            this.tabPage_MainWarehouse.Controls.Add(this.checkedListBox_WarehouseManifest);
+            this.tabPage_MainWarehouse.Controls.Add(this.checkedListBox_WarehouseTruckManifest);
             this.tabPage_MainWarehouse.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage_MainWarehouse.Location = new System.Drawing.Point(4, 22);
             this.tabPage_MainWarehouse.Name = "tabPage_MainWarehouse";
@@ -505,14 +526,51 @@
             this.tabPage_MainWarehouse.Text = "Warehouse";
             this.tabPage_MainWarehouse.UseVisualStyleBackColor = true;
             // 
-            // button_TruckRemoveSelected
+            // button_WarehouseMakeDelivery
             // 
-            this.button_TruckRemoveSelected.Location = new System.Drawing.Point(137, 152);
-            this.button_TruckRemoveSelected.Name = "button_TruckRemoveSelected";
-            this.button_TruckRemoveSelected.Size = new System.Drawing.Size(152, 23);
-            this.button_TruckRemoveSelected.TabIndex = 18;
-            this.button_TruckRemoveSelected.Text = "Remove Selected Truck";
-            this.button_TruckRemoveSelected.UseVisualStyleBackColor = true;
+            this.button_WarehouseMakeDelivery.Location = new System.Drawing.Point(684, 16);
+            this.button_WarehouseMakeDelivery.Name = "button_WarehouseMakeDelivery";
+            this.button_WarehouseMakeDelivery.Size = new System.Drawing.Size(101, 23);
+            this.button_WarehouseMakeDelivery.TabIndex = 4;
+            this.button_WarehouseMakeDelivery.Text = "Make Delivery";
+            this.button_WarehouseMakeDelivery.UseVisualStyleBackColor = true;
+            this.button_WarehouseMakeDelivery.Click += new System.EventHandler(this.button_WarehouseMakeDelivery_Click);
+            // 
+            // label_WarehouseTruckManifest
+            // 
+            this.label_WarehouseTruckManifest.AutoSize = true;
+            this.label_WarehouseTruckManifest.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_WarehouseTruckManifest.Location = new System.Drawing.Point(5, 16);
+            this.label_WarehouseTruckManifest.Name = "label_WarehouseTruckManifest";
+            this.label_WarehouseTruckManifest.Size = new System.Drawing.Size(265, 24);
+            this.label_WarehouseTruckManifest.TabIndex = 3;
+            this.label_WarehouseTruckManifest.Text = "Warehouse Truck Manifest:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(430, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(206, 24);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Warehouse Manifest:";
+            // 
+            // checkedListBox_WarehouseManifest
+            // 
+            this.checkedListBox_WarehouseManifest.FormattingEnabled = true;
+            this.checkedListBox_WarehouseManifest.Location = new System.Drawing.Point(434, 54);
+            this.checkedListBox_WarehouseManifest.Name = "checkedListBox_WarehouseManifest";
+            this.checkedListBox_WarehouseManifest.Size = new System.Drawing.Size(351, 319);
+            this.checkedListBox_WarehouseManifest.TabIndex = 1;
+            // 
+            // checkedListBox_WarehouseTruckManifest
+            // 
+            this.checkedListBox_WarehouseTruckManifest.FormattingEnabled = true;
+            this.checkedListBox_WarehouseTruckManifest.Location = new System.Drawing.Point(9, 54);
+            this.checkedListBox_WarehouseTruckManifest.Name = "checkedListBox_WarehouseTruckManifest";
+            this.checkedListBox_WarehouseTruckManifest.Size = new System.Drawing.Size(351, 319);
+            this.checkedListBox_WarehouseTruckManifest.TabIndex = 0;
             // 
             // form_LogisticsManagerMain
             // 
@@ -527,6 +585,8 @@
             this.tabPage_Inventory.PerformLayout();
             this.tabPage_Truck.ResumeLayout(false);
             this.tabPage_Truck.PerformLayout();
+            this.tabPage_MainWarehouse.ResumeLayout(false);
+            this.tabPage_MainWarehouse.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -576,7 +636,12 @@
         private System.Windows.Forms.Button button_TruckSaveInfo;
         private System.Windows.Forms.TextBox textBox_TruckMakeAndModel;
         private System.Windows.Forms.CheckedListBox checkedListBox_TruckList;
-        private System.Windows.Forms.Button button_TruckRemoveSelected;
+        private System.Windows.Forms.Button button_TruckRemoveChecked;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckedListBox checkedListBox_WarehouseManifest;
+        private System.Windows.Forms.CheckedListBox checkedListBox_WarehouseTruckManifest;
+        private System.Windows.Forms.Label label_WarehouseTruckManifest;
+        private System.Windows.Forms.Button button_WarehouseMakeDelivery;
     }
 }
 
