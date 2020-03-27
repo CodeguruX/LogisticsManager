@@ -42,7 +42,5 @@ namespace LogisticsManager
         public T FirstProperty { get; set; }
         public D SecondProperty { get; set; }
         public P ThirdProperty { get; set; }
-
-        
     }
 }

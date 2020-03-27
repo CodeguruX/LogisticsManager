@@ -10,14 +10,15 @@ using System.Windows.Forms;
 
 
 /*
-    The customer class is a good example of why generics are important to
-    this program and in general. 
+    The customer class is meant to serve as a non-functional example of why
+    generics are important to the future of this program and in general. 
     
     At a minimum, we'll have to have a company name, address, a list of their
     current inventory, and a list of which trucks are carrying their cargo.
 
     We assume one truck is delivering for one company per trip, regardless
-    of where they start and end their delivery.
+    of where they start and end their delivery. It's just in this case that
+    the trucks are delivering from the main warehouse to a more localized warehouse.
 
     Companies, however, are going to need to be able to hold a list of one to
     many trucks that could be delivering their goods. With the medium scope of
@@ -46,7 +47,7 @@ namespace LogisticsManager
         private D secondValue; // Company ID
         private P thirdValue; // Address
         private L fourthValue; // List of currently employed trucks and the good they are carrying
-        private R fifthValue; // List of the current inventory that the company has in stock
+        private R fifthValue; // List of the current inventory that the company has in stock at a certain location
 
 
         public Customer(T first, D second, P third, L fourth, R fifth)
@@ -63,12 +64,5 @@ namespace LogisticsManager
         public P ThirdProperty { get; set; }
         public L FourthProperty { get; set; }
         public R FifthProperty { get; set; }
-
-        // L and R will be of List types so they are not to be used with the overridden ToString() method
-
-        public override string ToString()
-        {
-            return this.ToString();
-        }
     }
 }

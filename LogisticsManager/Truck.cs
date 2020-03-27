@@ -16,36 +16,26 @@ using System.Windows.Forms;
     that one would find useful to list about a delivery truck.
 
     Here, we're sticking to license plate number, vin number,
-    a List of its current inventory. and the location (or customer)
-    it is currently assigned to.
+    and the make/model of the vehicle.
  */
 
 namespace LogisticsManager
 {
-    public class Truck<T, D, P, L>
+    public class Truck<T, D, P>
     {
         private T firstValue; // License Plate
         private D secondValue; // VIN Number
-        private P thirdValue; // List of current inventory
-        private L fourthValue; // Currently assigned customer
+        private P thirdValue; // Make and Model of Vehicle
 
-
-        public Truck(T first, D second, P third, L fourth)
+        public Truck(T first, D second, P third)
         {
             firstValue = first;
             secondValue = second;
             thirdValue = third;
-            fourthValue = fourth;
         }
 
         public T FirstProperty { get; set; }
         public D SecondProperty { get; set; }
         public P ThirdProperty { get; set; }
-        public L FourthProperty { get; set; }
-
-        public override string ToString()
-        {
-            return this.ToString();
-        }
     }
 }

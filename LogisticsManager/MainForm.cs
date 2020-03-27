@@ -1,5 +1,12 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LogisticsManager
@@ -31,8 +38,8 @@ namespace LogisticsManager
                 checkedListBox_CurrentInventory.Items.Add(inventoryItem, false);
                 checkedListBox_CurrentInventory.DisplayMember = "FirstProperty";
 
-                checkedListBox_TrucksInventoryInStock.Items.Add(inventoryItem, false);
-                checkedListBox_TrucksInventoryInStock.DisplayMember = "FirstProperty";
+                checkedListBox_TruckInventoryInStock.Items.Add(inventoryItem, false);
+                checkedListBox_TruckInventoryInStock.DisplayMember = "FirstProperty";
             }
             catch (Exception)
             {
@@ -63,7 +70,7 @@ namespace LogisticsManager
             foreach (var item in checkedListBox_CurrentInventory.CheckedItems.OfType<Inventory<string, string, int>>().ToList())
             {
                 checkedListBox_CurrentInventory.Items.Remove(item);
-                checkedListBox_TrucksInventoryInStock.Items.Remove(item);
+                checkedListBox_TruckInventoryInStock.Items.Remove(item);
             }
         }
 
@@ -180,56 +187,63 @@ namespace LogisticsManager
             textBox_InventoryNewName.Text = "";
             textBox_InventoryNewID.Text = "";
             textBox_InventoryNewQuantity.Text = "1";
-        }
-
-        private void label_TrucksVinNumber_Click(object sender, EventArgs e)
-        {
-            // Code for generating random VIN numbers will be added at a later date.
-        }
-
-        private void checkedListBox_TrucksCurrentInventory_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Code for generating an item value preview on selection but before being checked will be added at a later date.
-        }
+        }       
 
         private void button_TruckSaveInfo_Click(object sender, EventArgs e)
         {
-            foreach (var item in checkedListBox_CurrentInventory.Items.OfType<Inventory<string, string, int>>().ToList())
-            {
-                checkedListBox_TrucksInventoryInStock.Items.Add(item, false);
-                checkedListBox_TrucksInventoryInStock.DisplayMember = "FirstProperty";
-            }
+            Truck<string, string, string> truckInfo = new Truck<string, string, string>("","","");
 
-            //checkedListBox_CurrentInventory.Items = checkedListBox_TrucksInventoryInStock.ob
+            try
+            {
+                if (textBox_TruckLicensePlate.Text == "" || textBox_TruckVinNumber.Text == "" || textBox_TruckMakeAndModel.Text == "")
+                {
+                    throw new System.Exception();
+                }
+
+                truckInfo.FirstProperty = textBox_TruckLicensePlate.Text;
+                truckInfo.SecondProperty = textBox_TruckVinNumber.Text;
+                truckInfo.ThirdProperty = textBox_TruckMakeAndModel.Text;
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Must provide a License Plate, VIN Number, and the Make/Model to register a new Truck.", "Missing Truck Info");
+            }
+            
         }
 
         private void button_TrucksMoveInventoryToTruck_Click(object sender, EventArgs e)
         {
-            foreach (var item in checkedListBox_TrucksInventoryInStock.CheckedItems.OfType<Inventory<string, string, int>>().ToList())
+            List<Inventory<string, string, int>> selectedInventory = new List<Inventory<string, string, int>>();
+            List<Inventory<string, string, int>> selectedTruckInventoryList = new List<Inventory<string, string, int>>();
+
+            foreach (var item in checkedListBox_TruckInventoryInStock.CheckedItems.OfType<Inventory<string, string, int>>().ToList())
             {
-                checkedListBox_TrucksCurrentInventory.Items.Add(item, false);
-                checkedListBox_TrucksCurrentInventory.DisplayMember = "FirstProperty";
+                // Update the current inventory of the truck
+
+                checkedListBox_TruckCurrentInventory.Items.Add(item, false);
+                checkedListBox_TruckCurrentInventory.DisplayMember = "FirstProperty";
 
                 // Update the removal of the Inventory object from current stock on Inventory and Trucks tab
 
                 checkedListBox_CurrentInventory.Items.Remove(item);
-                checkedListBox_TrucksInventoryInStock.Items.Remove(item);
+                checkedListBox_TruckInventoryInStock.Items.Remove(item);
             }
+
         }
 
         private void button_TrucksMoveInventortyToStock_Click(object sender, EventArgs e)
         {
-            foreach (var item in checkedListBox_TrucksCurrentInventory.CheckedItems.OfType<Inventory<string, string, int>>().ToList())
+            foreach (var item in checkedListBox_TruckCurrentInventory.CheckedItems.OfType<Inventory<string, string, int>>().ToList())
             {
                 checkedListBox_CurrentInventory.Items.Add(item, false);
                 checkedListBox_CurrentInventory.DisplayMember = "FirstProperty";
 
-                checkedListBox_TrucksInventoryInStock.Items.Add(item, false);
-                checkedListBox_TrucksInventoryInStock.DisplayMember = "FirstProperty";
+                checkedListBox_TruckInventoryInStock.Items.Add(item, false);
+                checkedListBox_TruckInventoryInStock.DisplayMember = "FirstProperty";
                 // Update the removal of the Inventory object from current stock on Inventory and Trucks tab
 
 
-                checkedListBox_TrucksCurrentInventory.Items.Remove(item);
+                checkedListBox_TruckCurrentInventory.Items.Remove(item);
             }
         }
     }
